@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-spiritual-navy font-sans antialiased;
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+
+  /* Luxury gradient backgrounds */
+  .gradient-spiritual {
+    @apply bg-gradient-to-br from-spiritual-navy via-spiritual-deepBlue to-spiritual-royalBlue;
+    position: relative;
+  }
+
+  .gradient-spiritual::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(250, 204, 21, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .gradient-gold {
+    @apply bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600;
+  }
+
+  /* Glassmorphism effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-spiritual-navy/80 backdrop-blur-lg border border-white/10;
+  }
+
+  .glass-luxury {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.15);
+  }
+
+  /* Premium button styles with enhanced interactions */
+  .btn-primary {
+    @apply px-8 py-3 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white font-semibold rounded-full shadow-luxury;
+    @apply transform hover:-translate-y-1 hover:shadow-luxury-lg transition-all duration-300 ease-smooth;
+    @apply relative overflow-hidden;
+    position: relative;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-3 bg-white text-spiritual-navy font-semibold rounded-full border-2 border-spiritual-navy shadow-md hover:shadow-lg;
+    @apply transform hover:-translate-y-1 transition-all duration-300;
+    @apply hover:bg-spiritual-navy hover:text-white;
+  }
+
+  .btn-outline {
+    @apply px-8 py-3 border-2 border-gold-500 text-gold-600 font-semibold rounded-full;
+    @apply hover:bg-gold-500 hover:text-white transform hover:-translate-y-1 transition-all duration-300;
+    @apply hover:shadow-gold;
+  }
+
+  /* Card styles with 3D effects */
+  .card-luxury {
+    @apply bg-white rounded-2xl shadow-luxury transition-all duration-500;
+    @apply hover:shadow-luxury-lg transform hover:-translate-y-2;
+    perspective: 1000px;
+  }
+
+  .card-luxury:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  .card-glass {
+    @apply glass-luxury rounded-2xl p-6 shadow-xl hover:shadow-2xl;
+    @apply transform hover:-translate-y-1 transition-all duration-300;
+  }
+
+  .card-interactive {
+    @apply bg-white rounded-2xl shadow-luxury transition-all duration-500 relative overflow-hidden;
+    transform-style: preserve-3d;
+  }
+
+  .card-interactive::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .card-interactive:hover::before {
+    opacity: 1;
+  }
+
+  .card-interactive:hover {
+    transform: translateY(-12px) rotateX(2deg);
+    box-shadow: 0 30px 80px -12px rgba(15, 23, 42, 0.35);
+  }
+
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+
+  /* Text gradient with animation */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  @keyframes gradientShift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Divider */
+  .divider-gold {
+    @apply h-1 w-24 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 rounded-full mx-auto;
+  }
+
+  .divider-animated {
+    @apply h-1 w-0 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 rounded-full mx-auto;
+    @apply transition-all duration-1000 ease-smooth;
+  }
+
+  .divider-animated.visible {
+    @apply w-24;
+  }
+
+  /* Parallax containers */
+  .parallax-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .parallax-layer {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Shimmer effect for images */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Magnetic effect container */
+  .magnetic {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Floating animation */
+  .floating {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
+
+@layer utilities {
+
+  /* Smooth animations */
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-8 transition-all duration-700;
+  }
+
+  .animate-on-scroll.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gold-500 rounded-full;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-gold-600;
+  }
+
+  /* Background patterns */
+  .bg-dots {
+    background-image: radial-gradient(circle, rgba(250, 204, 21, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(rgba(250, 204, 21, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250, 204, 21, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 40px rgba(250, 204, 21, 0.4);
+}
+
+/* Image overlay effects */
+.image-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.7), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-overlay:hover::after {
+  opacity: 1;
+}
+
+.image-zoom {
+  overflow: hidden;
+}
+
+.image-zoom img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Backdrop blur utilities */
+.backdrop-blur-premium {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
